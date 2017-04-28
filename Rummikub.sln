@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RummikubConsole", "RummikubConsole\RummikubConsole.csproj", "{CD9F6F76-5C36-4DC1-9124-8649676AC5EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rummikub", "Rummikub\Rummikub.csproj", "{7AD09F17-1AE2-4273-9727-19FB8F2ACFC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RummikubTests", "RummikubTests\RummikubTests.csproj", "{4D05B926-EE14-4ADA-B7F1-AF93ACB718C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD9F6F76-5C36-4DC1-9124-8649676AC5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9F6F76-5C36-4DC1-9124-8649676AC5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9F6F76-5C36-4DC1-9124-8649676AC5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9F6F76-5C36-4DC1-9124-8649676AC5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD09F17-1AE2-4273-9727-19FB8F2ACFC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD09F17-1AE2-4273-9727-19FB8F2ACFC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD09F17-1AE2-4273-9727-19FB8F2ACFC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD09F17-1AE2-4273-9727-19FB8F2ACFC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D05B926-EE14-4ADA-B7F1-AF93ACB718C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D05B926-EE14-4ADA-B7F1-AF93ACB718C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D05B926-EE14-4ADA-B7F1-AF93ACB718C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D05B926-EE14-4ADA-B7F1-AF93ACB718C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
