@@ -1,0 +1,13 @@
+Rummikub
+
+1) Each player starts with 14 tiles.
+2) Player order starts with each player geting a tile. The one with the highest number is first.
+3) The first player to place all his tiles on the table wins.
+4) A player needs to place a tile combination with 25 points to start.
+5) A player may combine and move tiles already places in the table as long as they don't break the sequences.
+6) A player needs to set a combination of 3 tiles or more.
+7) A combination maybe a numeric sequence of the same color.
+8) A combination maybe tiles of the same numeric value but not repeating the same color.
+9) A player may break a sequence if each parts are a valid combination.
+10) A joker may be used to complete a combination.
+11) A joker can be swapped as long as the player replaces the intended tile the joker stands in for.
