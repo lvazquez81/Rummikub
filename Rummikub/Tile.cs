@@ -1,5 +1,8 @@
-﻿namespace Rummikub
+﻿using System.Diagnostics;
+
+namespace Rummikub
 {
+    [DebuggerDisplay("{Index}:{Color}{Value}")]
     public class Tile
     {
         public TileColor Color { get; private set; } 

@@ -29,10 +29,10 @@ namespace Rummikub
 
         private void AddJokerTiles()
         {
-            var jokerOne = new Tile(TileColor.Black, value: -1, index: _seedIndex++);
+            var jokerOne = new Tile(TileColor.Black, value: 0, index: _seedIndex++);
             _pool.Add(jokerOne);
 
-            var jokerTwo = new Tile(TileColor.Red, value: -1, index: _seedIndex++);
+            var jokerTwo = new Tile(TileColor.Red, value: 0, index: _seedIndex++);
             _pool.Add(jokerTwo);
         }
 
@@ -46,6 +46,19 @@ namespace Rummikub
                 var tileTwo = new Tile(color, i + 1, _seedIndex++);
                 _pool.Add(tileTwo);
             }
+        }
+
+        public IList<Tile> GetInitialTiles()
+        {
+            IList<Tile> tiles = new List<Tile>();
+
+            for(int i = 0; i < TILES_PER_PLAYER; i++)
+            {
+                Tile tile = new Tile(TileColor.Blue, i + 1, i);
+                tiles.Add(tile);
+            }
+
+            return tiles;
         }
 
       

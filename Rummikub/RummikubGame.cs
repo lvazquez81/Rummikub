@@ -17,8 +17,8 @@ namespace Rummikub
         {
             foreach (string name in playerNames)
             {
-                IList<Tile> tiles = new List<Tile>();
-                Player p = new Player(name, tiles);
+                IList<Tile> tiles = _tilePool.GetInitialTiles();
+                _players.Add(name, new Player(name, tiles));
             }
         }
 
