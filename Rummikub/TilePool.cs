@@ -10,12 +10,10 @@ namespace Rummikub
         private readonly int _tilesPerColor = 13;
         private readonly IList<Tile> _pool;
         private readonly IList<int> _usedTiles;
-        private readonly Random _random;
         private int _seedIndex;
 
         public TilePool(int tilesPerColor, int jokerTiles)
         {
-            _random = new Random();
             _pool = new List<Tile>();
             _seedIndex = 0;
             _usedTiles = new List<int>();
@@ -61,9 +59,18 @@ namespace Rummikub
             return tiles;
         }
 
+        public void Shuffle()
+        {
+            var rnd = new Random(DateTime.Now.Millisecond);
+            for(int i = 0; i < _pool.Count; i++)
+            {
+                _pool[i].Index = rnd.Next();
+            }
+        }
+
         public IList<Tile> Tiles
         {
-            get { return _pool; }
+            get { return _pool.OrderBy(x => x.Index).ToList(); }
         }
 
     }

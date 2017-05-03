@@ -37,5 +37,26 @@ namespace RummikubTests
 
             Assert.AreEqual(2, jokerTiles.Count);
         }
+
+        [Test]
+        public void Tiles_areOrdered()
+        {
+            var pool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
+
+            IList<Tile> expectedSort = pool.Tiles.OrderBy(x => x.Index).ToList();
+
+            CollectionAssert.AreEqual(expectedSort, pool.Tiles);
+        }
+
+        [Test]
+        public void Tiles_areShuffled()
+        {
+            var pool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
+
+            IList<Tile> orderedTiles = pool.Tiles.OrderBy(x => x.Index).ToList();
+            pool.Shuffle();
+
+            CollectionAssert.AreNotEqual(orderedTiles, pool.Tiles);
+        }
     }
 }

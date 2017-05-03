@@ -7,7 +7,7 @@ namespace Rummikub
     {
         public TileColor Color { get; private set; } 
         public int Value { get; private set; }
-        public int Index { get; private set; }
+        public int Index { get; set; }
 
         public Tile(TileColor color, int value, int index)
         {
