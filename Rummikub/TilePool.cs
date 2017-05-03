@@ -6,14 +6,14 @@ namespace Rummikub
 {
     public class TilePool
     {
-        private const int TILES_PER_PLAYER = 14;
-        private const int TILES_PER_COLOR = 13;
+        private readonly int _tilesPerPlayer = 14;
+        private readonly int _tilesPerColor = 13;
         private readonly IList<Tile> _pool;
         private readonly IList<int> _usedTiles;
         private readonly Random _random;
         private int _seedIndex;
 
-        public TilePool()
+        public TilePool(int tilesPerColor, int jokerTiles)
         {
             _random = new Random();
             _pool = new List<Tile>();
@@ -29,16 +29,16 @@ namespace Rummikub
 
         private void AddJokerTiles()
         {
-            var jokerOne = new Tile(TileColor.Black, value: 0, index: _seedIndex++);
+            var jokerOne = new Tile(TileColor.Black, value: 25, index: _seedIndex++);
             _pool.Add(jokerOne);
 
-            var jokerTwo = new Tile(TileColor.Red, value: 0, index: _seedIndex++);
+            var jokerTwo = new Tile(TileColor.Red, value: 25, index: _seedIndex++);
             _pool.Add(jokerTwo);
         }
 
         private void InitializeTileGroup(TileColor color)
         {
-            for (int i = 0; i < TILES_PER_COLOR; i++)
+            for (int i = 0; i < _tilesPerColor; i++)
             {
                 var tileOne = new Tile(color, i + 1, _seedIndex++);
                 _pool.Add(tileOne);
@@ -52,7 +52,7 @@ namespace Rummikub
         {
             IList<Tile> tiles = new List<Tile>();
 
-            for(int i = 0; i < TILES_PER_PLAYER; i++)
+            for (int i = 0; i < _tilesPerPlayer; i++)
             {
                 Tile tile = new Tile(TileColor.Blue, i + 1, i);
                 tiles.Add(tile);
@@ -61,6 +61,10 @@ namespace Rummikub
             return tiles;
         }
 
-      
+        public IList<Tile> Tiles
+        {
+            get { return _pool; }
+        }
+
     }
 }

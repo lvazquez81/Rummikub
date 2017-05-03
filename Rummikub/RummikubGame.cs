@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Rummikub
 {
@@ -10,7 +11,7 @@ namespace Rummikub
         public RummikubGame()
         {
             _players = new Dictionary<string, Player>();
-            _tilePool = new TilePool();
+            _tilePool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
         }
 
         public void Initialize(params string[] playerNames)
@@ -20,6 +21,11 @@ namespace Rummikub
                 IList<Tile> tiles = _tilePool.GetInitialTiles();
                 _players.Add(name, new Player(name, tiles));
             }
+        }
+
+        public Player CreatePlayer(string playerName)
+        {
+            throw new NotImplementedException();
         }
 
         public Player GetPlayer(string playerName)
