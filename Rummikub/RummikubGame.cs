@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Rummikub
@@ -14,18 +15,9 @@ namespace Rummikub
             _tilePool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
         }
 
-        public void Initialize(params string[] playerNames)
-        {
-            foreach (string name in playerNames)
-            {
-                IList<Tile> tiles = _tilePool.GetInitialTiles();
-                _players.Add(name, new Player(name, tiles));
-            }
-        }
-
         public Player CreatePlayer(string playerName)
         {
-            throw new NotImplementedException();
+            return new Player(playerName);
         }
 
         public Player GetPlayer(string playerName)
@@ -38,6 +30,32 @@ namespace Rummikub
             {
                 return null;
             }
+        }
+
+        public void SetupGame(params Player[] players)
+        {
+            var rnd = new Random(DateTime.Now.Millisecond);
+            foreach (Player p in players)
+            {
+                p.Order = rnd.Next();
+
+                _players.Add(p.Name, p);
+            }
+        }
+
+        public IList<string> Players
+        {
+            get
+            {
+                return (from x in _players.Values
+                        orderby x.Order ascending
+                        select x.Name).ToList();
+            }
+        }
+
+        public void GetInitialTiles(Player p)
+        {
+            p.Tiles = _tilePool.GetInitialTiles(p.Name);
         }
     }
 }

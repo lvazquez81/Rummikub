@@ -2,18 +2,16 @@
 
 namespace Rummikub
 {
-    [DebuggerDisplay("{Index}:{Color}{Value}")]
+    [DebuggerDisplay("{Color}{Value}")]
     public class Tile
     {
         public TileColor Color { get; private set; } 
         public int Value { get; private set; }
-        public int Index { get; set; }
 
-        public Tile(TileColor color, int value, int index)
+        public Tile(TileColor color, int value)
         {
             this.Color = color;
             this.Value = value;
-            this.Index = index;
         }
     }
 

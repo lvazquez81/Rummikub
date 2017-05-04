@@ -1,38 +1,62 @@
 ﻿using NUnit.Framework;
 using Rummikub;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RummikubTests
 {
     [TestFixture]
     public class StartGameTests
     {
-        [Test]
-        public void StartGame_hasPlayerNames()
-        {
-            var game = new RummikubGame();
-            game.Initialize("Rossy", "Luis", "Fer", "Coco");
+        RummikubGame _game;
 
-            Assert.IsNotNull(game.GetPlayer("Rossy"));
-            Assert.IsNotNull(game.GetPlayer("Luis"));
-            Assert.IsNotNull(game.GetPlayer("Fer"));
-            Assert.IsNotNull(game.GetPlayer("Coco"));
+        [SetUp]
+        public void TestSetup()
+        {
+            _game = new RummikubGame();
+        }
+
+
+        [Test]
+        public void InitializePlayer_hasName_andTiles()
+        {
+            Player p = _game.CreatePlayer(playerName: "Rossy");
+
+            Assert.IsNotNull(p);
+            StringAssert.AreEqualIgnoringCase("Rossy", p.Name);
         }
 
         [Test]
-        public void StartGame_allPlayers_have14Tiles()
+        public void SetupPlayerOrder()
+        {
+            Player p1 = _game.CreatePlayer(playerName: "Rossy");
+            Player p2 = _game.CreatePlayer(playerName: "Luis");
+            Player p3 = _game.CreatePlayer(playerName: "Fer");
+            Player p4 = _game.CreatePlayer(playerName: "Coco");
+
+            _game.SetupGame(p1, p2, p3, p4);
+
+            CollectionAssert.Contains(_game.Players, "Rossy");
+            Assert.IsTrue(_game.GetPlayer("Rossy").Order > 0);
+
+            CollectionAssert.Contains(_game.Players, "Luis");
+            Assert.IsTrue(_game.GetPlayer("Luis").Order > 0);
+
+            CollectionAssert.Contains(_game.Players, "Fer");
+            Assert.IsTrue(_game.GetPlayer("Fer").Order > 0);
+
+            CollectionAssert.Contains(_game.Players, "Coco");
+            Assert.IsTrue(_game.GetPlayer("Coco").Order > 0);
+        }
+
+        [Test]
+        public void EachPlayer_getsTiles()
         {
             var game = new RummikubGame();
-            game.Initialize("Rossy", "Luis", "Fer", "Coco");
+            Player p = game.CreatePlayer(playerName: "Rossy");
 
-            Assert.IsTrue(game.GetPlayer("Rossy").Tiles.Count == 14);
-            Assert.IsTrue(game.GetPlayer("Luis").Tiles.Count == 14);
-            Assert.IsTrue(game.GetPlayer("Fer").Tiles.Count == 14);
-            Assert.IsTrue(game.GetPlayer("Coco").Tiles.Count == 14);
+            game.GetInitialTiles(p);
+
+            CollectionAssert.IsNotEmpty(p.Tiles);
         }
+
     }
 }

@@ -8,13 +8,13 @@ namespace Rummikub
     {
         private readonly int _tilesPerPlayer = 14;
         private readonly int _tilesPerColor = 13;
-        private readonly IList<Tile> _pool;
+        private readonly IList<TileControl> _pool;
         private readonly IList<int> _usedTiles;
         private int _seedIndex;
 
         public TilePool(int tilesPerColor, int jokerTiles)
         {
-            _pool = new List<Tile>();
+            _pool = new List<TileControl>();
             _seedIndex = 0;
             _usedTiles = new List<int>();
 
@@ -23,14 +23,16 @@ namespace Rummikub
             InitializeTileGroup(TileColor.Orange);
             InitializeTileGroup(TileColor.Red);
             AddJokerTiles();
+
+            this.Shuffle();
         }
 
         private void AddJokerTiles()
         {
-            var jokerOne = new Tile(TileColor.Black, value: 25, index: _seedIndex++);
+            var jokerOne = new TileControl(TileColor.Black, value: 25, index: _seedIndex++);
             _pool.Add(jokerOne);
 
-            var jokerTwo = new Tile(TileColor.Red, value: 25, index: _seedIndex++);
+            var jokerTwo = new TileControl(TileColor.Red, value: 25, index: _seedIndex++);
             _pool.Add(jokerTwo);
         }
 
@@ -38,25 +40,31 @@ namespace Rummikub
         {
             for (int i = 0; i < _tilesPerColor; i++)
             {
-                var tileOne = new Tile(color, i + 1, _seedIndex++);
+                var tileOne = new TileControl(color, i + 1, _seedIndex++);
                 _pool.Add(tileOne);
 
-                var tileTwo = new Tile(color, i + 1, _seedIndex++);
+                var tileTwo = new TileControl(color, i + 1, _seedIndex++);
                 _pool.Add(tileTwo);
             }
         }
 
-        public IList<Tile> GetInitialTiles()
+        public IList<Tile> GetInitialTiles(string playerName)
         {
-            IList<Tile> tiles = new List<Tile>();
+            this.Shuffle();
 
-            for (int i = 0; i < _tilesPerPlayer; i++)
+            IList<TileControl> availableTiles = (from x in this.Tiles
+                                                 where x.Owner == null
+                                                 select x).ToList();
+
+            IList<TileControl> playerTiles = availableTiles.Take(_tilesPerPlayer).ToList();
+
+            foreach(TileControl x in playerTiles)
             {
-                Tile tile = new Tile(TileColor.Blue, i + 1, i);
-                tiles.Add(tile);
+                x.Owner = playerName;
             }
 
-            return tiles;
+            return playerTiles.ToList<Tile>();
+
         }
 
         public void Shuffle()
@@ -68,7 +76,7 @@ namespace Rummikub
             }
         }
 
-        public IList<Tile> Tiles
+        public IList<TileControl> Tiles
         {
             get { return _pool.OrderBy(x => x.Index).ToList(); }
         }

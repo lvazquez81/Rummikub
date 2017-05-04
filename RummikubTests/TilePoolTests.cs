@@ -4,13 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RummikubTests
 {
     [TestFixture]
-    public class ShuffleTests
+    public class TilePoolTests
     {
         [Test]
         public void Tiles_hasColorPieces_withSameCount()
@@ -43,7 +41,7 @@ namespace RummikubTests
         {
             var pool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
 
-            IList<Tile> expectedSort = pool.Tiles.OrderBy(x => x.Index).ToList();
+            IList<TileControl> expectedSort = pool.Tiles.OrderBy(x => x.Index).ToList();
 
             CollectionAssert.AreEqual(expectedSort, pool.Tiles);
         }
@@ -53,10 +51,11 @@ namespace RummikubTests
         {
             var pool = new TilePool(tilesPerColor: 13, jokerTiles: 2);
 
-            IList<Tile> orderedTiles = pool.Tiles.OrderBy(x => x.Index).ToList();
+            IList<TileControl> orderedTiles = pool.Tiles.OrderBy(x => x.Index).ToList();
             pool.Shuffle();
 
             CollectionAssert.AreNotEqual(orderedTiles, pool.Tiles);
         }
+
     }
 }

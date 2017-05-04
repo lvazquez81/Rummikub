@@ -11,3 +11,15 @@ Rummikub
 9) A player may break a sequence if each parts are a valid combination.
 10) A joker may be used to complete a combination.
 11) A joker can be swapped as long as the player replaces the intended tile the joker stands in for.
+
+
+Typical game
+***************
+I. Setup players
+	* Each player get 14 tiles.
+	* Set player order.
+II. Initial game
+	* Play 25 point group.
+III. Game
+	* Play hand
+	* Pickup tile
