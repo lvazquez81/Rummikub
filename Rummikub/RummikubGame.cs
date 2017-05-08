@@ -32,6 +32,28 @@ namespace Rummikub
             }
         }
 
+        public bool Play(Player player, string tilesString)
+        {
+            IList<Tile> playingTiles = TileProvider.Create(tilesString);
+
+            if (IsValidGroup(playingTiles))
+            {
+                MoveTilesToBoard(playingTiles);
+            }
+
+            return true;
+        }
+
+        private void MoveTilesToBoard(IList<Tile> playingTiles)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool IsValidGroup(IList<Tile> playingTiles)
+        {
+            return Calculator.IsValid(playingTiles);
+        }
+
         public void SetupGame(params Player[] players)
         {
             var rnd = new Random(DateTime.Now.Millisecond);

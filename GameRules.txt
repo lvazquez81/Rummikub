@@ -23,3 +23,14 @@ II. Initial game
 III. Game
 	* Play hand
 	* Pickup tile
+
+Plays
+***************
+Is a tile group valid?
+1) Is it a valid sequence?
+	- Are they the same color?
+	- Does it have a valid numeric sequence?
+
+2) Is it a valid mirror?
+	- Are they different color?
+	- Are they the same number?

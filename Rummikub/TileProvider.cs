@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Rummikub
 {
@@ -21,7 +20,7 @@ namespace Rummikub
                     TileColor? tileColor = ParseColor(colorString);
                     int? tileValue = ParseValue(valueString);
 
-                    if(tileColor != null && tileValue != null)
+                    if (tileColor != null && tileValue != null)
                     {
                         tiles.Add(new Tile(tileColor.Value, tileValue.Value));
                     }
@@ -29,6 +28,24 @@ namespace Rummikub
             }
 
             return tiles;
+        }
+
+        public static object CreateTile(string tileString)
+        {
+            string colorString = tileString.Trim()[0].ToString();
+            string valueString = tileString.Trim().Substring(1, tileString.Trim().Length - 1).Trim();
+
+            TileColor? tileColor = ParseColor(colorString);
+            int? tileValue = ParseValue(valueString);
+
+            if (tileColor != null && tileValue != null)
+            {
+                return new Tile(tileColor.Value, tileValue.Value);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private static int? ParseValue(string valueString)

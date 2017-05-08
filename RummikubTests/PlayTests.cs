@@ -20,7 +20,10 @@ namespace RummikubTests
                 .Returns(TileProvider.Create("B10, B11, B12"));
             var game = new RummikubGame();
             Player p = game.CreatePlayer("Rossy");
-            
+
+            bool valid = game.Play(p, "B10, B11, B12");
+
+            Assert.IsTrue(valid);
         }
     }
 }
