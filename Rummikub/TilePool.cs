@@ -18,7 +18,7 @@ namespace Rummikub
             _seedIndex = 0;
             _usedTiles = new List<int>();
 
-            InitializeTileGroup(TileColor.Black);
+            InitializeTileGroup(TileColor.Green);
             InitializeTileGroup(TileColor.Blue);
             InitializeTileGroup(TileColor.Orange);
             InitializeTileGroup(TileColor.Red);
@@ -29,7 +29,7 @@ namespace Rummikub
 
         private void AddJokerTiles()
         {
-            var jokerOne = new TileControl(TileColor.Black, value: 25, index: _seedIndex++);
+            var jokerOne = new TileControl(TileColor.Green, value: 25, index: _seedIndex++);
             _pool.Add(jokerOne);
 
             var jokerTwo = new TileControl(TileColor.Red, value: 25, index: _seedIndex++);
