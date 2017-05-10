@@ -24,6 +24,22 @@ III. Game
 	* Play hand
 	* Pickup tile
 
+Game objects
+*****************
+Player
+	* Can play tiles to the board.
+	* Can pickup tiles from the pool.
+	* Can move tiles in board.
+Board
+	* Has tile groups.
+Tile pool
+	* Has all available tiles.
+Rules
+	* Validates a play.
+	* Determines the winner.
+	* 
+
+
 Plays
 ***************
 Is a tile group valid?

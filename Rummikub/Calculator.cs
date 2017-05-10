@@ -10,7 +10,28 @@ namespace Rummikub
     {
         public static bool IsValid(IList<Tile> tiles)
         {
-            return HasSameColor(tiles) && HasEnoughTiles(tiles) && HasNumberSequence(tiles);
+            bool hasValidSequence = HasSameColor(tiles) && HasEnoughTiles(tiles) && HasNumberSequence(tiles);
+            bool hasValidMirror = !HasSameColor(tiles) && HasEnoughTiles(tiles) && HasSameValue(tiles) && !HasDuplicateColors(tiles);
+            return hasValidSequence || hasValidMirror;
+        }
+
+        private static bool HasDuplicateColors(IList<Tile> tiles)
+        {
+            TileColor groupColor = tiles[0].Color;
+
+            // Find duplicate color tiles
+            int duplicateColorCount = (from x in tiles group x by x.Color into y where y.Count() > 1 select y).Count();
+
+            return duplicateColorCount > 0;
+        }
+
+        private static bool HasSameValue(IList<Tile> tiles)
+        {
+            int groupValue= tiles[0].Value;
+
+            int sameGroupValue = (from x in tiles where x.Value== groupValue select x).Count();
+
+            return sameGroupValue == tiles.Count;
         }
 
         private static bool HasNumberSequence(IList<Tile> tiles)

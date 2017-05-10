@@ -36,17 +36,7 @@ namespace Rummikub
         {
             IList<Tile> playingTiles = TileProvider.Create(tilesString);
 
-            if (IsValidGroup(playingTiles))
-            {
-                MoveTilesToBoard(playingTiles);
-            }
-
-            return true;
-        }
-
-        private void MoveTilesToBoard(IList<Tile> playingTiles)
-        {
-            throw new NotImplementedException();
+            return IsValidGroup(playingTiles);
         }
 
         private bool IsValidGroup(IList<Tile> playingTiles)
